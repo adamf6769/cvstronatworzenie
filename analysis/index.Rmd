@@ -14,6 +14,12 @@ editor_options:
 
 Slim Shady.
 
+## Zdjecie
+```{r uczelnia-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
+
+knitr::include_graphics("assets/uczelnia.png")
+```
+
 ## O stronie
 
 Ledwo dycha.
