@@ -205,12 +205,12 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ##  Zainteresowania
 
--  Analiza danych i Data Science
--  Sprzęt komputerowy i nowe technologie
+- Analiza danych i Data Science
+- Sprzęt komputerowy i nowe technologie
 - Wizualizacja i storytelling z danymi
 - Gry komputerowe
-- 📈 Optymalizacja i benchmarking
-- 🔧 Majsterkowanie przy komputerach
+- Optymalizacja i benchmarking
+- Majsterkowanie przy komputerach
 
 </div>
 

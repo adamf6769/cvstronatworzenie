@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Imie Nazwisko" />
+
+<meta name="date" content="2026-01-04" />
+
+<title>Analiza rynku kart graficznych</title>
+
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Moja piękna strona</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+<li>
+  <a href="cv.html">CV</a>
+</li>
+<li>
+  <a href="prezentacja.html">Prezentacja</a>
+</li>
+<li>
+  <a href="analiza-gpu.html">Analiza Danych</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/adamf6769/cvstronatworzenie">
+    <span class="fa fa-github"></span>
+     
+    GitHub
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Analiza rynku kart graficznych</h1>
+<h4 class="author">Imie Nazwisko</h4>
+<h4 class="date">2026-01-04</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2026-01-04
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>cvstronatworzenie/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.2). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted
+changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R
+Markdown file created these results, you’ll want to first commit it to
+the Git repo. If you’re still working on the analysis, you can ignore
+this warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and build the
+HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20260104code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20260104)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20260104code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20260104)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietreea375fbe9135ac1e410979b04be4b5acb64644ab1targetblanka375fbea">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/adamf6769/cvstronatworzenie/tree/a375fbe9135ac1e410979b04be4b5acb64644ab1" target="_blank">a375fbe</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietreea375fbe9135ac1e410979b04be4b5acb64644ab1targetblanka375fbea"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/adamf6769/cvstronatworzenie/tree/a375fbe9135ac1e410979b04be4b5acb64644ab1" target="_blank">a375fbe</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .RData
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  analysis/analiza-danych.Rmd
+    Untracked:  data/gpu_dane.csv
+    Untracked:  skrypt.R
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+    Modified:   analysis/cv.Rmd
+    Deleted:    data/Excel/gpu_dane.csv
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="wprowadzenie" class="section level1">
+<h1>Wprowadzenie</h1>
+<p>W tej analizie przyjrzymy się rynkowi kart graficznych (GPU) z trzech
+głównych generacji: - NVIDIA GeForce RTX 30xx (2020-2021) - NVIDIA
+GeForce RTX 40xx (2022-2023) - AMD Radeon RX 7xxx (2022-2023)</p>
+<div id="cel-analizy" class="section level2">
+<h2>Cel analizy</h2>
+<p>Zbadamy zależności między: - <strong>Ceną</strong> a
+<strong>wydajnością</strong> - <strong>Pamięcią VRAM</strong> a
+<strong>ceną</strong> - <strong>Poborem mocy (TDP)</strong> a
+<strong>wydajnością</strong> - Porównamy oferty NVIDIA i AMD</p>
+<hr />
+</div>
+</div>
+<div id="wczytanie-i-przygotowanie-danych" class="section level1">
+<h1>Wczytanie i przygotowanie danych</h1>
+<div id="ładowanie-bibliotek" class="section level2">
+<h2>Ładowanie bibliotek</h2>
+<pre class="r"><code># Załadowanie wymaganych pakietów
+library(tidyverse)  # dplyr + ggplot2 + inne
+library(knitr)      # do ładnych tabel</code></pre>
+</div>
+<div id="wczytanie-danych" class="section level2">
+<h2>Wczytanie danych</h2>
+<pre class="r"><code># Wczytanie danych o kartach graficznych
+gpu_data &lt;- read.csv(&quot;data/gpu_dane.csv&quot;, 
+                     fileEncoding = &quot;UTF-8&quot;,
+                     stringsAsFactors = FALSE)
+
+# Podgląd pierwszych wierszy
+head(gpu_data)</code></pre>
+<pre><code>        Model Producent Cena_PLN VRAM_GB TDP_W Wydajnosc_FPS Rok_premiery
+1    RTX 4090    NVIDIA     8999      24   450           165         2022
+2    RTX 4080    NVIDIA     6499      16   320           144         2022
+3 RTX 4070 Ti    NVIDIA     4299      12   285           128         2023
+4    RTX 4070    NVIDIA     3299      12   200           112         2023
+5 RTX 4060 Ti    NVIDIA     2199       8   160            95         2023
+6 RX 7900 XTX       AMD     4999      24   355           152         2022
+  Generacja
+1      40xx
+2      40xx
+3      40xx
+4      40xx
+5      40xx
+6      7xxx</code></pre>
+</div>
+<div id="podstawowe-statystyki" class="section level2">
+<h2>Podstawowe statystyki</h2>
+<pre class="r"><code># Podsumowanie danych
+summary(gpu_data)</code></pre>
+<pre><code>    Model            Producent            Cena_PLN       VRAM_GB     
+ Length:15          Length:15          Min.   :1499   Min.   : 8.00  
+ Class :character   Class :character   1st Qu.:2349   1st Qu.: 9.00  
+ Mode  :character   Mode  :character   Median :3299   Median :12.00  
+                                       Mean   :4106   Mean   :14.27  
+                                       3rd Qu.:4999   3rd Qu.:18.00  
+                                       Max.   :8999   Max.   :24.00  
+     TDP_W       Wydajnosc_FPS    Rok_premiery   Generacja        
+ Min.   :160.0   Min.   : 85.0   Min.   :2020   Length:15         
+ 1st Qu.:200.0   1st Qu.:100.0   1st Qu.:2020   Class :character  
+ Median :263.0   Median :118.0   Median :2022   Mode  :character  
+ Mean   :267.9   Mean   :120.3   Mean   :2022                     
+ 3rd Qu.:320.0   3rd Qu.:140.0   3rd Qu.:2023                     
+ Max.   :450.0   Max.   :165.0   Max.   :2023                     </code></pre>
+<pre class="r"><code># Struktura danych
+str(gpu_data)</code></pre>
+<pre><code>&#39;data.frame&#39;:   15 obs. of  8 variables:
+ $ Model        : chr  &quot;RTX 4090&quot; &quot;RTX 4080&quot; &quot;RTX 4070 Ti&quot; &quot;RTX 4070&quot; ...
+ $ Producent    : chr  &quot;NVIDIA&quot; &quot;NVIDIA&quot; &quot;NVIDIA&quot; &quot;NVIDIA&quot; ...
+ $ Cena_PLN     : int  8999 6499 4299 3299 2199 4999 4299 2999 2399 1499 ...
+ $ VRAM_GB      : int  24 16 12 12 8 24 20 16 12 8 ...
+ $ TDP_W        : int  450 320 285 200 160 355 315 263 245 165 ...
+ $ Wydajnosc_FPS: int  165 144 128 112 95 152 138 118 105 88 ...
+ $ Rok_premiery : int  2022 2022 2023 2023 2023 2022 2022 2023 2023 2023 ...
+ $ Generacja    : chr  &quot;40xx&quot; &quot;40xx&quot; &quot;40xx&quot; &quot;40xx&quot; ...</code></pre>
+<p><strong>Zbiór zawiera:</strong> - 15 kart graficznych - 8 zmiennych
+(kolumn) - Dane o cenach, wydajności, specyfikacji technicznej</p>
+<hr />
+</div>
+</div>
+<div id="przetwarzanie-danych-z-dplyr" class="section level1">
+<h1>Przetwarzanie danych z dplyr</h1>
+<div id="filtrowanie-danych---karty-w-przedziale-cenowym"
+class="section level2">
+<h2>1. Filtrowanie danych - karty w przedziale cenowym</h2>
+<pre class="r"><code># Karty w przedziale 2000-5000 PLN (segment średni/wysoki)
+gpu_mid_high &lt;- gpu_data %&gt;%
+  filter(Cena_PLN &gt;= 2000 &amp; Cena_PLN &lt;= 5000) %&gt;%
+  arrange(desc(Wydajnosc_FPS))
+
+# Wyświetlenie wyników
+kable(gpu_mid_high, 
+      caption = &quot;Karty graficzne w przedziale 2000-5000 PLN&quot;)</code></pre>
+<table>
+<caption>Karty graficzne w przedziale 2000-5000 PLN</caption>
+<colgroup>
+<col width="14%" />
+<col width="12%" />
+<col width="10%" />
+<col width="9%" />
+<col width="7%" />
+<col width="17%" />
+<col width="15%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model</th>
+<th align="left">Producent</th>
+<th align="right">Cena_PLN</th>
+<th align="right">VRAM_GB</th>
+<th align="right">TDP_W</th>
+<th align="right">Wydajnosc_FPS</th>
+<th align="right">Rok_premiery</th>
+<th align="left">Generacja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">RX 7900 XTX</td>
+<td align="left">AMD</td>
+<td align="right">4999</td>
+<td align="right">24</td>
+<td align="right">355</td>
+<td align="right">152</td>
+<td align="right">2022</td>
+<td align="left">7xxx</td>
+</tr>
+<tr class="even">
+<td align="left">RX 7900 XT</td>
+<td align="left">AMD</td>
+<td align="right">4299</td>
+<td align="right">20</td>
+<td align="right">315</td>
+<td align="right">138</td>
+<td align="right">2022</td>
+<td align="left">7xxx</td>
+</tr>
+<tr class="odd">
+<td align="left">RTX 3080</td>
+<td align="left">NVIDIA</td>
+<td align="right">4999</td>
+<td align="right">10</td>
+<td align="right">320</td>
+<td align="right">130</td>
+<td align="right">2020</td>
+<td align="left">30xx</td>
+</tr>
+<tr class="even">
+<td align="left">RTX 4070 Ti</td>
+<td align="left">NVIDIA</td>
+<td align="right">4299</td>
+<td align="right">12</td>
+<td align="right">285</td>
+<td align="right">128</td>
+<td align="right">2023</td>
+<td align="left">40xx</td>
+</tr>
+<tr class="odd">
+<td align="left">RX 7800 XT</td>
+<td align="left">AMD</td>
+<td align="right">2999</td>
+<td align="right">16</td>
+<td align="right">263</td>
+<td align="right">118</td>
+<td align="right">2023</td>
+<td align="left">7xxx</td>
+</tr>
+<tr class="even">
+<td align="left">RTX 4070</td>
+<td align="left">NVIDIA</td>
+<td align="right">3299</td>
+<td align="right">12</td>
+<td align="right">200</td>
+<td align="right">112</td>
+<td align="right">2023</td>
+<td align="left">40xx</td>
+</tr>
+<tr class="odd">
+<td align="left">RTX 3070</td>
+<td align="left">NVIDIA</td>
+<td align="right">2999</td>
+<td align="right">8</td>
+<td align="right">220</td>
+<td align="right">108</td>
+<td align="right">2020</td>
+<td align="left">30xx</td>
+</tr>
+<tr class="even">
+<td align="left">RX 7700 XT</td>
+<td align="left">AMD</td>
+<td align="right">2399</td>
+<td align="right">12</td>
+<td align="right">245</td>
+<td align="right">105</td>
+<td align="right">2023</td>
+<td align="left">7xxx</td>
+</tr>
+<tr class="odd">
+<td align="left">RTX 4060 Ti</td>
+<td align="left">NVIDIA</td>
+<td align="right">2199</td>
+<td align="right">8</td>
+<td align="right">160</td>
+<td align="right">95</td>
+<td align="right">2023</td>
+<td align="left">40xx</td>
+</tr>
+<tr class="even">
+<td align="left">RTX 3060 Ti</td>
+<td align="left">NVIDIA</td>
+<td align="right">2299</td>
+<td align="right">8</td>
+<td align="right">200</td>
+<td align="right">95</td>
+<td align="right">2020</td>
+<td align="left">30xx</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretacja:</strong><br />
+W tym przedziale cenowym mamy 10 modeli. To najczęściej wybierany
+segment przez graczy - oferuje dobrą wydajność bez astronomicznych
+cen.</p>
+<hr />
+</div>
+<div id="dodanie-nowych-zmiennych---mutate" class="section level2">
+<h2>2. Dodanie nowych zmiennych - mutate</h2>
+<pre class="r"><code># Obliczenie wskaźników wydajności
+gpu_data &lt;- gpu_data %&gt;%
+  mutate(
+    # Wydajność na złotówkę (FPS/PLN)
+    Wydajnosc_na_zlotowke = round(Wydajnosc_FPS / Cena_PLN, 4),
+    
+    # Wydajność na Wat (FPS/W)
+    Wydajnosc_na_Wat = round(Wydajnosc_FPS / TDP_W, 2),
+    
+    # Kategoria cenowa
+    Kategoria_cenowa = case_when(
+      Cena_PLN &lt; 2000 ~ &quot;Budget&quot;,
+      Cena_PLN &gt;= 2000 &amp; Cena_PLN &lt; 4000 ~ &quot;Mid-range&quot;,
+      Cena_PLN &gt;= 4000 &amp; Cena_PLN &lt; 7000 ~ &quot;High-end&quot;,
+      Cena_PLN &gt;= 7000 ~ &quot;Enthusiast&quot;
+    ),
+    
+    # Cena za 1 GB VRAM
+    Cena_za_GB_VRAM = round(Cena_PLN / VRAM_GB, 0)
+  )
+
+# Najlepsze karty pod względem wydajności na złotówkę
+gpu_data %&gt;%
+  select(Model, Producent, Cena_PLN, Wydajnosc_FPS, Wydajnosc_na_zlotowke) %&gt;%
+  arrange(desc(Wydajnosc_na_zlotowke)) %&gt;%
+  head(5) %&gt;%
+  kable(caption = &quot;TOP 5: Najlepsza wydajność na złotówkę&quot;)</code></pre>
+<table>
+<caption>TOP 5: Najlepsza wydajność na złotówkę</caption>
+<colgroup>
+<col width="17%" />
+<col width="14%" />
+<col width="13%" />
+<col width="20%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Model</th>
+<th align="left">Producent</th>
+<th align="right">Cena_PLN</th>
+<th align="right">Wydajnosc_FPS</th>
+<th align="right">Wydajnosc_na_zlotowke</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">RX 7600</td>
+<td align="left">AMD</td>
+<td align="right">1499</td>
+<td align="right">88</td>
+<td align="right">0.0587</td>
+</tr>
+<tr class="even">
+<td align="left">RTX 3060</td>
+<td align="left">NVIDIA</td>
+<td align="right">1799</td>
+<td align="right">85</td>
+<td align="right">0.0472</td>
+</tr>
+<tr class="odd">
+<td align="left">RX 7700 XT</td>
+<td align="left">AMD</td>
+<td align="right">2399</td>
+<td align="right">105</td>
+<td align="right">0.0438</td>
+</tr>
+<tr class="even">
+<td align="left">RTX 4060 Ti</td>
+<td align="left">NVIDIA</td>
+<td align="right">2199</td>
+<td align="right">95</td>
+<td align="right">0.0432</td>
+</tr>
+<tr class="odd">
+<td align="left">RTX 3060 Ti</td>
+<td align="left">NVIDIA</td>
+<td align="right">2299</td>
+<td align="right">95</td>
+<td align="right">0.0413</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretacja:</strong><br />
+Model <strong>RX 7600</strong> oferuje najlepszy stosunek wydajności do
+ceny (0.0587 FPS/PLN).</p>
+<hr />
+</div>
+<div id="grupowanie-i-agregacja---group_by-summarise"
+class="section level2">
+<h2>3. Grupowanie i agregacja - group_by + summarise</h2>
+<pre class="r"><code># Porównanie producentów
+porownanie_producentow &lt;- gpu_data %&gt;%
+  group_by(Producent) %&gt;%
+  summarise(
+    Liczba_modeli = n(),
+    Srednia_cena = round(mean(Cena_PLN), 0),
+    Srednia_wydajnosc = round(mean(Wydajnosc_FPS), 1),
+    Sredni_TDP = round(mean(TDP_W), 0),
+    Srednie_VRAM = round(mean(VRAM_GB), 1),
+    Max_wydajnosc = max(Wydajnosc_FPS),
+    Min_cena = min(Cena_PLN)
+  ) %&gt;%
+  arrange(desc(Srednia_wydajnosc))
+
+kable(porownanie_producentow,
+      caption = &quot;Porównanie producentów GPU&quot;)</code></pre>
+<table style="width:100%;">
+<caption>Porównanie producentów GPU</caption>
+<colgroup>
+<col width="9%" />
+<col width="13%" />
+<col width="12%" />
+<col width="17%" />
+<col width="10%" />
+<col width="12%" />
+<col width="13%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Producent</th>
+<th align="right">Liczba_modeli</th>
+<th align="right">Srednia_cena</th>
+<th align="right">Srednia_wydajnosc</th>
+<th align="right">Sredni_TDP</th>
+<th align="right">Srednie_VRAM</th>
+<th align="right">Max_wydajnosc</th>
+<th align="right">Min_cena</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NVIDIA</td>
+<td align="right">10</td>
+<td align="right">4539</td>
+<td align="right">120.4</td>
+<td align="right">268</td>
+<td align="right">13.4</td>
+<td align="right">165</td>
+<td align="right">1799</td>
+</tr>
+<tr class="even">
+<td align="left">AMD</td>
+<td align="right">5</td>
+<td align="right">3239</td>
+<td align="right">120.2</td>
+<td align="right">269</td>
+<td align="right">16.0</td>
+<td align="right">152</td>
+<td align="right">1499</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretacja:</strong><br />
+- <strong>NVIDIA</strong> ma średnio wyższą wydajność (120.4 FPS) -
+<strong>AMD</strong> oferuje niższą średnią cenę (3239 PLN)</p>
+<pre class="r"><code># Analiza według generacji
+analiza_generacji &lt;- gpu_data %&gt;%
+  group_by(Generacja, Producent) %&gt;%
+  summarise(
+    Liczba_modeli = n(),
+    Srednia_cena = round(mean(Cena_PLN), 0),
+    Srednia_wydajnosc = round(mean(Wydajnosc_FPS), 1),
+    .groups = &quot;drop&quot;
+  ) %&gt;%
+  arrange(Generacja, Producent)
+
+kable(analiza_generacji,
+      caption = &quot;Analiza według generacji i producenta&quot;)</code></pre>
+<table>
+<caption>Analiza według generacji i producenta</caption>
+<thead>
+<tr class="header">
+<th align="left">Generacja</th>
+<th align="left">Producent</th>
+<th align="right">Liczba_modeli</th>
+<th align="right">Srednia_cena</th>
+<th align="right">Srednia_wydajnosc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">30xx</td>
+<td align="left">NVIDIA</td>
+<td align="right">5</td>
+<td align="right">4019</td>
+<td align="right">112.0</td>
+</tr>
+<tr class="even">
+<td align="left">40xx</td>
+<td align="left">NVIDIA</td>
+<td align="right">5</td>
+<td align="right">5059</td>
+<td align="right">128.8</td>
+</tr>
+<tr class="odd">
+<td align="left">7xxx</td>
+<td align="left">AMD</td>
+<td align="right">5</td>
+<td align="right">3239</td>
+<td align="right">120.2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="wizualizacje-danych" class="section level1">
+<h1>Wizualizacje danych</h1>
+<div id="wykres-1-zależność-ceny-od-wydajności" class="section level2">
+<h2>Wykres 1: Zależność ceny od wydajności</h2>
+<pre class="r"><code>ggplot(gpu_data, aes(x = Cena_PLN, y = Wydajnosc_FPS)) +
+  # Punkty z podziałem na producentów
+  geom_point(aes(color = Producent, size = VRAM_GB), alpha = 0.7) +
+  
+  # Linia trendu
+  geom_smooth(method = &quot;lm&quot;, se = TRUE, color = &quot;black&quot;, linetype = &quot;dashed&quot;) +
+  
+  # Etykiety dla wybranych modeli
+  geom_text(data = gpu_data %&gt;% 
+              filter(Model %in% c(&quot;RTX 4090&quot;, &quot;RX 7900 XTX&quot;, &quot;RTX 3060&quot;)),
+            aes(label = Model), 
+            vjust = -0.5, size = 3, fontface = &quot;bold&quot;) +
+  
+  # Tytuły i opisy
+  labs(
+    title = &quot;Zależność wydajności od ceny kart graficznych&quot;,
+    subtitle = &quot;Porównanie modeli NVIDIA i AMD z różnych generacji&quot;,
+    x = &quot;Cena (PLN)&quot;,
+    y = &quot;Wydajność (FPS w 1440p)&quot;,
+    color = &quot;Producent&quot;,
+    size = &quot;VRAM (GB)&quot;,
+    caption = &quot;Źródło: Dane rynkowe z 2024 roku&quot;
+  ) +
+  
+  # Motyw
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = &quot;bold&quot;, size = 16),
+    plot.subtitle = element_text(size = 12, color = &quot;gray40&quot;),
+    legend.position = &quot;right&quot;
+  ) +
+  
+  # Kolory dla producentów
+  scale_color_manual(values = c(&quot;NVIDIA&quot; = &quot;#76B900&quot;, &quot;AMD&quot; = &quot;#ED1C24&quot;))</code></pre>
+<p><img src="figure/analiza-danych.Rmd/wykres-cena-wydajnosc-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Interpretacja wykresu:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Wyraźna korelacja dodatnia</strong> - droższe karty oferują
+wyższą wydajność</li>
+<li><strong>NVIDIA (zielone punkty)</strong> dominuje w segmencie
+high-end (&gt;7000 PLN)</li>
+<li><strong>AMD (czerwone punkty)</strong> oferuje konkurencyjne ceny w
+segmencie mid-range</li>
+<li>Większe punkty = więcej pamięci VRAM (ważne dla gier w wysokich
+rozdzielczościach)</li>
+</ol>
+<hr />
+</div>
+<div id="wykres-2-porównanie-wydajności-według-kategorii-cenowej"
+class="section level2">
+<h2>Wykres 2: Porównanie wydajności według kategorii cenowej</h2>
+<pre class="r"><code># Uporządkowanie kategorii
+gpu_data$Kategoria_cenowa &lt;- factor(gpu_data$Kategoria_cenowa,
+                                     levels = c(&quot;Budget&quot;, &quot;Mid-range&quot;, 
+                                               &quot;High-end&quot;, &quot;Enthusiast&quot;))
+
+ggplot(gpu_data, aes(x = Kategoria_cenowa, y = Wydajnosc_FPS, fill = Producent)) +
+  # Słupki grupowane
+  geom_col(position = position_dodge(width = 0.8), alpha = 0.8) +
+  
+  # Wartości na słupkach
+  geom_text(aes(label = round(Wydajnosc_FPS, 0)), 
+            position = position_dodge(width = 0.8),
+            vjust = -0.5, size = 3.5) +
+  
+  # Tytuły i opisy
+  labs(
+    title = &quot;Średnia wydajność kart graficznych według kategorii cenowej&quot;,
+    subtitle = &quot;Porównanie oferty NVIDIA vs AMD&quot;,
+    x = &quot;Kategoria cenowa&quot;,
+    y = &quot;Średnia wydajność (FPS)&quot;,
+    fill = &quot;Producent&quot;,
+    caption = &quot;Budget: &lt;2000 PLN | Mid-range: 2000-4000 PLN | High-end: 4000-7000 PLN | Enthusiast: &gt;7000 PLN&quot;
+  ) +
+  
+  # Motyw
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = &quot;bold&quot;, size = 16),
+    plot.subtitle = element_text(size = 12, color = &quot;gray40&quot;),
+    legend.position = &quot;top&quot;,
+    axis.text.x = element_text(angle = 0, hjust = 0.5)
+  ) +
+  
+  # Kolory
+  scale_fill_manual(values = c(&quot;NVIDIA&quot; = &quot;#76B900&quot;, &quot;AMD&quot; = &quot;#ED1C24&quot;)) +
+  
+  # Skala Y
+  scale_y_continuous(breaks = seq(0, 180, 20), limits = c(0, 180))</code></pre>
+<p><img src="figure/analiza-danych.Rmd/wykres-kategorie-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Interpretacja wykresu:</strong></p>
+<ol style="list-style-type: decimal">
+<li>W kategoriach <strong>Budget</strong> i <strong>Mid-range</strong>
+różnice między NVIDIA a AMD są niewielkie</li>
+<li>NVIDIA wyraźnie dominuje w kategorii <strong>Enthusiast</strong>
+(RTX 4090 z 165 FPS)</li>
+<li>Największy skok wydajności występuje między
+<strong>High-end</strong> a <strong>Enthusiast</strong></li>
+<li>Dla graczy o ograniczonym budżecie, AMD oferuje konkurencyjną
+wydajność</li>
+</ol>
+<hr />
+</div>
+<div id="wykres-3-efektywność-energetyczna-wydajność-vs-tdp"
+class="section level2">
+<h2>Wykres 3: Efektywność energetyczna (Wydajność vs TDP)</h2>
+<pre class="r"><code>ggplot(gpu_data, aes(x = TDP_W, y = Wydajnosc_FPS)) +
+  # Punkty
+  geom_point(aes(color = Generacja, shape = Producent), size = 4, alpha = 0.7) +
+  
+  # Linie odniesienia
+  geom_hline(yintercept = mean(gpu_data$Wydajnosc_FPS), 
+             linetype = &quot;dashed&quot;, color = &quot;gray50&quot;, alpha = 0.5) +
+  geom_vline(xintercept = mean(gpu_data$TDP_W), 
+             linetype = &quot;dashed&quot;, color = &quot;gray50&quot;, alpha = 0.5) +
+  
+  # Etykiety dla skrajnych modeli
+  geom_text(data = gpu_data %&gt;% 
+              filter(Model %in% c(&quot;RTX 4090&quot;, &quot;RTX 4060 Ti&quot;, &quot;RX 7600&quot;)),
+            aes(label = Model), 
+            vjust = -1, size = 3, fontface = &quot;bold&quot;) +
+  
+  # Tytuły
+  labs(
+    title = &quot;Efektywność energetyczna kart graficznych&quot;,
+    subtitle = &quot;Zależność między poborem mocy (TDP) a wydajnością&quot;,
+    x = &quot;TDP - Pobór mocy (Waty)&quot;,
+    y = &quot;Wydajność (FPS)&quot;,
+    color = &quot;Generacja&quot;,
+    shape = &quot;Producent&quot;,
+    caption = &quot;Linie przerywane = średnie wartości&quot;
+  ) +
+  
+  # Motyw
+  theme_minimal(base_size = 12) +
+  theme(
+    plot.title = element_text(face = &quot;bold&quot;, size = 16),
+    plot.subtitle = element_text(size = 12, color = &quot;gray40&quot;),
+    legend.position = &quot;right&quot;
+  ) +
+  
+  # Kolory dla generacji
+  scale_color_brewer(palette = &quot;Set2&quot;)</code></pre>
+<p><img src="figure/analiza-danych.Rmd/wykres-tdp-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Interpretacja wykresu:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Nowsze generacje</strong> (40xx, 7xxx) są bardziej efektywne
+energetycznie</li>
+<li><strong>RTX 4090</strong> mimo wysokiego TDP (450W) oferuje
+najwyższą wydajność</li>
+<li><strong>RTX 4060 Ti</strong> i <strong>RX 7600</strong> to
+najefektywniejsze modele (niski TDP, przyzwoita wydajność)</li>
+<li>Karty z generacji <strong>30xx</strong> mają gorszą efektywność
+energetyczną niż nowsze modele</li>
+</ol>
+<p><strong>Ważne dla użytkowników:</strong> - Niższy TDP = niższe
+rachunki za prąd - Niższy TDP = mniejsze wymagania dla zasilacza -
+Niższy TDP = mniej hałasu (wentylatory pracują wolniej)</p>
+<hr />
+</div>
+</div>
+<div id="podsumowanie-i-wnioski" class="section level1">
+<h1>Podsumowanie i wnioski</h1>
+<div id="kluczowe-odkrycia" class="section level2">
+<h2>Kluczowe odkrycia</h2>
+<pre class="r"><code># Najlepsza wydajność na złotówkę
+best_value &lt;- gpu_data %&gt;%
+  arrange(desc(Wydajnosc_na_zlotowke)) %&gt;%
+  slice(1)
+
+# Najefektywniejsza energetycznie
+best_efficiency &lt;- gpu_data %&gt;%
+  arrange(desc(Wydajnosc_na_Wat)) %&gt;%
+  slice(1)
+
+# Najbardziej opłacalna w danej kategorii
+best_midrange &lt;- gpu_data %&gt;%
+  filter(Kategoria_cenowa == &quot;Mid-range&quot;) %&gt;%
+  arrange(desc(Wydajnosc_na_zlotowke)) %&gt;%
+  slice(1)</code></pre>
+<div id="rekomendacje-zakupowe" class="section level3">
+<h3>Rekomendacje zakupowe</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Najlepsza wydajność/cena:</strong> <strong>RX 7600</strong>
+<ul>
+<li>Cena: 1499 PLN</li>
+<li>Wydajność: 88 FPS</li>
+<li>Wskaźnik: 0.0587 FPS/PLN</li>
+</ul></li>
+<li><strong>Najlepsza w segmencie Mid-range:</strong> <strong>RX 7700
+XT</strong>
+<ul>
+<li>Cena: 2399 PLN</li>
+<li>Świetny balans ceny i wydajności</li>
+</ul></li>
+<li><strong>Najefektywniejsza energetycznie:</strong> <strong>RTX 4060
+Ti</strong>
+<ul>
+<li>TDP: 160 W</li>
+<li>Wskaźnik: 0.59 FPS/W</li>
+</ul></li>
+</ol>
+</div>
+<div id="ogólne-wnioski" class="section level3">
+<h3>Ogólne wnioski</h3>
+<ul>
+<li><strong>NVIDIA</strong> oferuje wyższą wydajność, ale za wyższą
+cenę</li>
+<li><strong>AMD</strong> to lepsza opcja dla użytkowników z ograniczonym
+budżetem</li>
+<li>Nowsze generacje (40xx, 7xxx) są znacznie bardziej efektywne
+energetycznie</li>
+<li>W segmencie <strong>Mid-range</strong> różnice między producentami
+są minimalne</li>
+<li>Pamięć VRAM rośnie wraz z ceną, ale nie zawsze proporcjonalnie</li>
+</ul>
+</div>
+<div id="dla-kogo-który-model" class="section level3">
+<h3>Dla kogo który model?</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Profil użytkownika</th>
+<th>Rekomendacja</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gracz budżetowy</td>
+<td>RX 7600 / RTX 3060</td>
+</tr>
+<tr class="even">
+<td>Gracz casualowy (1440p)</td>
+<td>RTX 4070 / RX 7800 XT</td>
+</tr>
+<tr class="odd">
+<td>Entuzjasta (4K gaming)</td>
+<td>RTX 4080 / RX 7900 XTX</td>
+</tr>
+<tr class="even">
+<td>Bez kompromisów</td>
+<td>RTX 4090</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+</div>
+<div id="użyte-techniki-analizy-danych" class="section level1">
+<h1>Użyte techniki analizy danych</h1>
+<p>W tej analizie wykorzystano:</p>
+<div id="pakiet-dplyr" class="section level2">
+<h2>Pakiet dplyr:</h2>
+<ul>
+<li><code>filter()</code> - filtrowanie kart w określonym przedziale
+cenowym</li>
+<li><code>mutate()</code> - tworzenie nowych zmiennych (wskaźniki
+wydajności)</li>
+<li><code>group_by()</code> - grupowanie według producenta i
+generacji</li>
+<li><code>summarise()</code> - obliczanie statystyk dla grup</li>
+<li><code>arrange()</code> - sortowanie wyników</li>
+<li><code>select()</code> - wybieranie kolumn</li>
+</ul>
+</div>
+<div id="pakiet-ggplot2" class="section level2">
+<h2>Pakiet ggplot2:</h2>
+<ul>
+<li><code>geom_point()</code> - wykres punktowy (scatter plot)</li>
+<li><code>geom_col()</code> - wykres słupkowy (bar chart)</li>
+<li><code>geom_smooth()</code> - linia trendu</li>
+<li><code>geom_text()</code> - etykiety na wykresach</li>
+<li>Personalizacja kolorów, tematów, opisów osi</li>
+</ul>
+</div>
+<div id="inne" class="section level2">
+<h2>Inne:</h2>
+<ul>
+<li><code>kable()</code> - ładne formatowanie tabel</li>
+<li>R Markdown - dynamiczne generowanie raportów</li>
+</ul>
+<hr />
+<p><em>Analiza została wykonana: 2026-01-04</em><br />
+<em>Autor: Imie Nazwisko</em></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.5.1 (2025-06-13 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 10 x64 (build 19045)
+
+Matrix products: default
+  LAPACK version 3.12.1
+
+locale:
+[1] LC_COLLATE=Polish_Poland.utf8  LC_CTYPE=Polish_Poland.utf8   
+[3] LC_MONETARY=Polish_Poland.utf8 LC_NUMERIC=C                  
+[5] LC_TIME=Polish_Poland.utf8    
+
+time zone: Europe/Warsaw
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] knitr_1.50      lubridate_1.9.4 forcats_1.0.1   stringr_1.5.2  
+ [5] dplyr_1.1.4     purrr_1.1.0     readr_2.1.6     tidyr_1.3.1    
+ [9] tibble_3.3.0    ggplot2_4.0.0   tidyverse_2.0.0 workflowr_1.7.2
+
+loaded via a namespace (and not attached):
+ [1] sass_0.4.10        generics_0.1.4     lattice_0.22-7     stringi_1.8.7     
+ [5] hms_1.1.4          digest_0.6.37      magrittr_2.0.4     timechange_0.3.0  
+ [9] evaluate_1.0.5     grid_4.5.1         RColorBrewer_1.1-3 fastmap_1.2.0     
+[13] Matrix_1.7-3       rprojroot_2.1.1    jsonlite_2.0.0     processx_3.8.6    
+[17] whisker_0.4.1      ps_1.9.1           promises_1.3.3     mgcv_1.9-3        
+[21] httr_1.4.7         scales_1.4.0       jquerylib_0.1.4    cli_3.6.5         
+[25] rlang_1.1.6        splines_4.5.1      withr_3.0.2        cachem_1.1.0      
+[29] yaml_2.3.10        tools_4.5.1        tzdb_0.5.0         httpuv_1.6.16     
+[33] vctrs_0.6.5        R6_2.6.1           lifecycle_1.0.4    git2r_0.36.2      
+[37] fs_1.6.6           pkgconfig_2.0.3    callr_3.7.6        pillar_1.11.1     
+[41] bslib_0.9.0        later_1.4.4        gtable_0.3.6       glue_1.8.0        
+[45] Rcpp_1.1.0         xfun_0.53          tidyselect_1.2.1   rstudioapi_0.17.1 
+[49] farver_2.1.2       nlme_3.1-168       htmltools_0.5.8.1  labeling_0.4.3    
+[53] rmarkdown_2.30     compiler_4.5.1     getPass_0.2-4      S7_0.2.0          </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
