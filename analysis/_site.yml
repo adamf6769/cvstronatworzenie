@@ -14,7 +14,7 @@ navbar:
   - text: Prezentacja
     href: prezentacja.html
   - text: Analiza Danych
-    href: analiza-gpu.html
+    href: analiza.html
   right:
   - icon: fa-github
     text: GitHub

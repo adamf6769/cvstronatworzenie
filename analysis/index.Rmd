@@ -14,15 +14,6 @@ editor_options:
 
 Slim Shady.
 
-## UPPowanie
-
-```{r uczelnia-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
-
-knitr::include_graphics("https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupp.ai%2Fwp-content%2Fuploads%2F2023%2F02%2FUPP-Social-Cards-02-1.jpg&sp=1767486823Td92b4701828e95c0dd566dd070ee4cb4cfb9f8b7c2c8ef9fc9e2e5fae7e4886c")
-```
-
-*Zdjecie*
-
 ## O stronie
 
 Ledwo dycha.
