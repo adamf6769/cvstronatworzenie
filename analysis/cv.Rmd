@@ -80,7 +80,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 <div class="cv-section">
 
-## 💼 Doświadczenie / Projekty
+## Doświadczenie / Projekty
 
 <div class="cv-item">
 
@@ -127,7 +127,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 <div class="cv-section">
 
-## 🛠️ Umiejętności
+##  Umiejętności
 
 ### Języki programowania
 

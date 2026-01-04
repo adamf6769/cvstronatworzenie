@@ -1,0 +1,274 @@
+---
+title: "Komputery jako hobby"
+subtitle: "Technologia i możliwości"
+author: "Imie Nazwisko"
+date: today
+format:
+  revealjs:
+    theme: dark
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    transition: slide
+    background-transition: fade
+---
+
+## Wprowadzenie {background-color="#1a1a1a"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Dlaczego komputery?
+
+- **Fascynacja technologią** od najmłodszych lat
+- **Nieograniczone możliwości** rozwoju
+- **Ciągła ewolucja** i innowacje
+- **Połączenie** hobby i nauki
+:::
+
+
+
+::::
+
+## Ewolucja wydajności GPU {background-color="#2a2a2a"}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6
+
+library(ggplot2)
+library(dplyr)
+
+# Dane o ewolucji GPU
+gpu_evolution <- data.frame(
+  Rok = c(2016, 2018, 2020, 2022, 2024),
+  GTX_Series = c(100, 145, 180, 210, 240),
+  RTX_Series = c(NA, NA, 200, 250, 320),
+  RX_Series = c(95, 130, 170, 230, 300)
+)
+
+gpu_evolution_long <- tidyr::pivot_longer(gpu_evolution, 
+                                          cols = -Rok, 
+                                          names_to = "Series", 
+                                          values_to = "FPS")
+
+ggplot(gpu_evolution_long, aes(x = Rok, y = FPS, color = Series, group = Series)) +
+  geom_line(size = 2, na.rm = TRUE) +
+  geom_point(size = 4, na.rm = TRUE) +
+  labs(
+    title = "Wzrost wydajności kart graficznych",
+    subtitle = "FPS w 1440p (średnia z gier AAA)",
+    x = "Rok premiery",
+    y = "Średnia wydajność (FPS)",
+    color = "Seria GPU"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.background = element_rect(fill = "#2a2a2a", color = NA),
+    panel.background = element_rect(fill = "#2a2a2a"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    panel.grid = element_line(color = "#404040"),
+    legend.background = element_rect(fill = "#2a2a2a"),
+    legend.text = element_text(color = "white")
+  ) +
+  scale_color_manual(values = c("GTX_Series" = "#76B900", 
+                                 "RTX_Series" = "#00D9FF",
+                                 "RX_Series" = "#ED1C24")) +
+  scale_y_continuous(breaks = seq(0, 350, 50))
+```
+
+## Porównanie komponentów {background-color="#1a1a1a"}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6
+
+# Dane porównawcze różnych PC
+komponenty <- data.frame(
+  Komponent = rep(c("CPU", "GPU", "RAM", "Storage"), 3),
+  Typ = rep(c("Budget PC", "Mid-range PC", "High-end PC"), each = 4),
+  Wydajnosc = c(
+    # Budget
+    60, 70, 50, 65,
+    # Mid-range
+    85, 90, 85, 90,
+    # High-end
+    100, 100, 100, 100
+  )
+)
+
+ggplot(komponenty, aes(x = Komponent, y = Wydajnosc, fill = Typ)) +
+  geom_col(position = "dodge", width = 0.7) +
+  labs(
+    title = "Porównanie wydajności według budżetu",
+    subtitle = "Względna wydajność komponentów (% max)",
+    x = "",
+    y = "Wydajność względna (%)",
+    fill = "Typ PC"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.background = element_rect(fill = "#1a1a1a", color = NA),
+    panel.background = element_rect(fill = "#1a1a1a"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    panel.grid = element_line(color = "#404040"),
+    legend.background = element_rect(fill = "#1a1a1a"),
+    legend.text = element_text(color = "white"),
+    legend.position = "top"
+  ) +
+  scale_fill_manual(values = c("Budget PC" = "#4A90E2", 
+                                "Mid-range PC" = "#F5A623",
+                                "High-end PC" = "#7ED321")) +
+  scale_y_continuous(breaks = seq(0, 100, 20), limits = c(0, 110))
+```
+
+## Benchmarking - testy wydajności {background-color="#2a2a2a"}
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 6
+
+# Dane z różnych benchmarków
+benchmark_data <- data.frame(
+  Test = c("3DMark", "Cinebench", "Geekbench", "PCMark", "Unigine"),
+  Score_2020 = c(8500, 1200, 4800, 6200, 5800),
+  Score_2024 = c(15200, 2400, 8900, 9800, 10500)
+)
+
+benchmark_long <- tidyr::pivot_longer(benchmark_data, 
+                                      cols = starts_with("Score"), 
+                                      names_to = "Rok",
+                                      names_prefix = "Score_",
+                                      values_to = "Score")
+
+ggplot(benchmark_long, aes(x = Test, y = Score, fill = Rok)) +
+  geom_col(position = "dodge", width = 0.7) +
+  geom_text(aes(label = Score), 
+            position = position_dodge(width = 0.7),
+            vjust = -0.5, color = "white", size = 4) +
+  labs(
+    title = "Wyniki testów wydajności",
+    subtitle = "Porównanie 2020 vs 2024 (mój PC)",
+    x = "Benchmark",
+    y = "Score",
+    fill = "Rok"
+  ) +
+  theme_minimal(base_size = 16) +
+  theme(
+    plot.background = element_rect(fill = "#2a2a2a", color = NA),
+    panel.background = element_rect(fill = "#2a2a2a"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    panel.grid = element_line(color = "#404040"),
+    legend.background = element_rect(fill = "#2a2a2a"),
+    legend.text = element_text(color = "white")
+  ) +
+  scale_fill_manual(values = c("2020" = "#E74C3C", "2024" = "#2ECC71")) +
+  scale_y_continuous(breaks = seq(0, 16000, 2000))
+```
+
+## Gaming vs Workstation {background-color="#1a1a1a"}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Gaming PC
+- **Priorytet:** GPU
+- **FPS:** 144+ Hz
+- **RGB:** Obowiązkowo! 
+- **Zastosowanie:** Gry AAA, streaming
+- **Budżet:** 4000-8000 PLN
+:::
+
+::: {.column width="50%"}
+### Workstation
+- **Priorytet:** CPU + RAM
+- **Stabilność:** 24/7 uptime
+- **RGB:** Opcjonalnie
+- **Zastosowanie:** Rendering, analiza danych
+- **Budżet:** 8000-15000 PLN
+:::
+
+::::
+
+---
+```{r}
+#| echo: false
+#| fig-width: 10
+#| fig-height: 5
+
+# Porównanie zastosowań
+zastosowania <- data.frame(
+  Zadanie = c("Gaming", "Video Editing", "3D Rendering", 
+              "Programming", "Office Work"),
+  Gaming_PC = c(100, 70, 50, 80, 90),
+  Workstation = c(80, 95, 100, 100, 100)
+)
+
+zastosowania_long <- tidyr::pivot_longer(zastosowania, 
+                                          cols = -Zadanie,
+                                          names_to = "Typ",
+                                          values_to = "Wydajnosc")
+
+ggplot(zastosowania_long, aes(x = Zadanie, y = Wydajnosc, fill = Typ)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.background = element_rect(fill = "#1a1a1a", color = NA),
+    panel.background = element_rect(fill = "#1a1a1a"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    panel.grid = element_line(color = "#404040"),
+    legend.background = element_rect(fill = "#1a1a1a"),
+    legend.text = element_text(color = "white")
+  ) +
+  labs(title = "Wydajność w różnych zastosowaniach",
+       x = "", y = "Wydajność względna (%)", fill = "") +
+  scale_fill_manual(values = c("Gaming_PC" = "#9B59B6", 
+                                "Workstation" = "#3498DB"))
+```
+
+## Przyszłość technologii {background-color="#2a2a2a"}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+### Nadchodzące innowacje
+
+- **AI i machine learning** w GPU
+- **DDR5 RAM** - wyższe częstotliwości
+- **PCIe 5.0** - szybsze transfery
+- **Chłodzenie cieczą** jako standard
+- **Ray tracing** w czasie rzeczywistym
+- **Wydajność na Wat** - efektywność energetyczna
+:::
+
+
+
+::::
+
+## Podsumowanie {background-color="#1a1a1a"}
+
+### Dlaczego komputery to najlepsze hobby?
+
+::: {.incremental}
+- *Ciągły rozwój** - zawsze jest coś nowego do nauki
+- *Praktyczne zastosowanie** - umiejętności przydatne zawodowo  
+- *Społeczność** - fora, Discord, meetupy
+- *Kreatywność** - nieskończone możliwości customizacji
+- *Dostępność** - dla każdego budżetu
+- *Przyszłościowość** - technologia tylko się rozwija
+:::
+
+. . .
+
+### "Najlepszą inwestycją jest wiedza" - Benjamin Franklin
+
+---
+
+## Dziękuję za uwagę! {background-color="#2a2a2a"}
+
+[Wróć do strony głównej](index.html){.button}
