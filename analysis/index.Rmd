@@ -1,7 +1,7 @@
 ---
 title: "Home"
 author: "Place Holder"
-date: "'r Sys.Date()'"
+date: "`r Sys.Date()`"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -39,4 +39,4 @@ Strona została wykonana przy użyciu następujących narzędzi i technologii:
 - **Git & GitHub** - kontrola wersji i hosting strony
 
 
-
+*Ostatnia aktualizacja: `r Sys.Date()`*
