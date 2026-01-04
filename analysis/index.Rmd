@@ -12,4 +12,3 @@ Welcome to my research website.
 
 [Wprowadzenie](wprowadzenie.html)
 [Wizualizacje](wizualizacje.html)
-[Testing](test.html)

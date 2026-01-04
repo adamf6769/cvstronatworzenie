@@ -1,7 +1,7 @@
 name: "cvstronatworzenie"
 output_dir: ../docs
 navbar:
-  title: "cvstronatworzenie"
+  title: "Moja piękna strona"
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,14 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  - text: CV
+    href: cv.html
+  - text: Prezentacja
+    href: prezentacja.html
+  right:
+  - icon: fa-github
+    text: GitHub
+    href: https://github.com/adamf6769/cvstronatworzenie
 output:
   workflowr::wflow_html:
     toc: yes
