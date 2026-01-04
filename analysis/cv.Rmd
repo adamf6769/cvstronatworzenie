@@ -1,0 +1,219 @@
+---
+title: "Curriculum Vitae"
+author: "Imie Nazwisko"
+date: "`r Sys.Date()`"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+<style>
+.cv-section {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.cv-section h2 {
+  color: #2C3E50;
+  border-bottom: 2px solid #3498DB;
+  padding-bottom: 5px;
+}
+.cv-item {
+  margin-bottom: 15px;
+}
+.cv-item h3 {
+  color: #34495E;
+  margin-bottom: 5px;
+}
+.cv-date {
+  color: #7F8C8D;
+  font-style: italic;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+</style>
+
+---
+
+# Imie Nazwisko
+
+**Student kierunku Kierunek** | Rok rok studiów
+
+
+---
+
+<div class="cv-section">
+
+## Wykształcenie
+
+<div class="cv-item">
+
+### Nazwa Uczelni
+**Kierunek: Kierunek**  
+<span class="cv-date">Rok rozpoczęcia - obecnie (Rok rok)</span>
+
+- Specjalizacja: [Twoja specjalizacja jeśli dotyczy]
+- Średnia ocen: [Twoja średnia]
+- Wybrane przedmioty: Statystyka, Analiza Danych, Programowanie w R, Bazy Danych, Matematyka
+
+</div>
+
+<div class="cv-item">
+
+### Szkoła Średnia
+**Liceum Ogólnokształcące im. [Nazwa]**  
+<span class="cv-date">Rok - Rok</span>
+
+- Profil: [np. matematyczno-fizyczny]
+- Matura: matematyka rozszerzona, informatyka rozszerzona
+
+</div>
+
+</div>
+
+---
+
+<div class="cv-section">
+
+## 💼 Doświadczenie / Projekty
+
+<div class="cv-item">
+
+### Projekt: Analiza rynku kart graficznych
+**Projekt studencki - Analiza Danych w R**  
+<span class="cv-date">`r format(Sys.Date(), "%B %Y")`</span>
+
+- Przeprowadzenie kompleksowej analizy danych o kartach graficznych (GPU)
+- Analiza zależności między ceną, wydajnością i specyfikacją techniczną
+- Wizualizacja danych przy użyciu ggplot2 (wykresy słupkowe, punktowe, liniowe)
+- Przetwarzanie danych z pakietem dplyr (filter, mutate, group_by, summarise)
+- Publikacja wyników w formie strony internetowej (workflowr)
+- **Technologie:** R, RStudio, ggplot2, dplyr, workflowr, Git
+
+</div>
+
+<div class="cv-item">
+
+### Projekt: [Nazwa innego projektu]
+**Rola: [np. Programista / Analityk]**  
+<span class="cv-date">Data - Data</span>
+
+- Opis projektu: [Krótki opis co robiłeś/aś w projekcie]
+- Wykorzystane technologie: [np. Python, SQL, JavaScript]
+- Efekty: [Co udało się osiągnąć]
+
+</div>
+
+<div class="cv-item">
+
+### Wolontariat / Koło naukowe
+**[Nazwa organizacji/koła]**  
+<span class="cv-date">Data - Data</span>
+
+- Opis Twoich działań
+- Nabyte umiejętności
+- Zrealizowane projekty
+
+</div>
+
+</div>
+
+---
+
+<div class="cv-section">
+
+## 🛠️ Umiejętności
+
+### Języki programowania
+
+- **R** - zaawansowany
+  - Analiza i wizualizacja danych (ggplot2, plotly)
+  - Przetwarzanie danych (dplyr, tidyr, lubridate)
+  - Tworzenie raportów (R Markdown, Quarto, knitr)
+  - Modelowanie statystyczne
+  
+- **Python** - średnio zaawansowany
+  - Analiza danych (pandas, numpy)
+  - Wizualizacja (matplotlib, seaborn)
+  - Podstawy machine learning (scikit-learn)
+  
+- **SQL** - średnio zaawansowany
+  - Zapytania SELECT, JOIN, GROUP BY
+  - Podstawy optymalizacji zapytań
+  - Praca z bazami danych (MySQL, PostgreSQL)
+
+### Narzędzia i technologie
+
+<div class="skills-grid">
+
+- **RStudio** - środowisko pracy z R
+- **Git & GitHub** - kontrola wersji
+- **workflowr** - zarządzanie projektami
+- **Quarto / R Markdown** - dokumentacja
+- **MS Office** - pakiet biurowy
+- **Jupyter Notebook** - Python
+- **VS Code** - edytor kodu
+
+</div>
+
+### Biblioteki i pakiety R
+
+- **tidyverse** - ekosystem do analizy danych
+  - `dplyr` - manipulacja danymi
+  - `ggplot2` - wizualizacja
+  - `tidyr` - porządkowanie danych
+  - `readr` - import danych
+- **knitr / rmarkdown** - generowanie raportów
+- **lubridate** - przetwarzanie dat
+- **stringr** - operacje na tekstach
+- **plotly** - interaktywne wykresy
+
+### Umiejętności analityczne
+
+- Czyszczenie i przetwarzanie danych
+- Analiza eksploracyjna danych (EDA)
+- Wizualizacja danych
+- Analiza statystyczna
+- Tworzenie raportów analitycznych
+- Interpretacja wyników
+
+### Języki obce
+
+- **Polski** - język ojczysty (C2)
+- **Angielski** - poziom B2/C1 (dokumentacja techniczna, komunikacja)
+- **[Inny język]** - [poziom]
+
+### Umiejętności miękkie
+
+- Praca w zespole
+- Komunikatywność
+- Rozwiązywanie problemów
+- Zarządzanie czasem
+- Myślenie analityczne
+- Szybkie uczenie się
+
+</div>
+
+---
+
+<div class="cv-section">
+
+##  Zainteresowania
+
+-  Analiza danych i Data Science
+-  Sprzęt komputerowy i nowe technologie
+- Wizualizacja i storytelling z danymi
+- Gry komputerowe
+- 📈 Optymalizacja i benchmarking
+- 🔧 Majsterkowanie przy komputerach
+
+</div>
+
+---
+
+*Ostatnia aktualizacja: `r Sys.Date()`*

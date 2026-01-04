@@ -1,5 +1,7 @@
 ---
 title: "Home"
+author: "Place Holder"
+date: "'r Sys.Date()'"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,7 +10,36 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+## O
 
-[Wprowadzenie](wprowadzenie.html)
-[Wizualizacje](wizualizacje.html)
+Slim Shady.
+
+## UPPowanie
+
+```{r uczelnia-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
+
+knitr::include_graphics("https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fupp.ai%2Fwp-content%2Fuploads%2F2023%2F02%2FUPP-Social-Cards-02-1.jpg&sp=1767486823Td92b4701828e95c0dd566dd070ee4cb4cfb9f8b7c2c8ef9fc9e2e5fae7e4886c")
+```
+
+*Zdjecie*
+
+## O stronie
+
+Ledwo dycha.
+
+
+## We have technology
+
+Strona została wykonana przy użyciu następujących narzędzi i technologii:
+
+- **R** (wersja 4.x) - język programowania do analizy danych
+- **RStudio** - zintegrowane środowisko programistyczne
+- **workflowr** - pakiet do zarządzania projektami analitycznymi
+- **R Markdown** - do tworzenia dynamicznych dokumentów
+- **Quarto** - do przygotowania prezentacji
+- **ggplot2** - biblioteka do zaawansowanej wizualizacji danych
+- **dplyr** - pakiet do efektywnego przetwarzania danych
+- **Git & GitHub** - kontrola wersji i hosting strony
+
+
+
