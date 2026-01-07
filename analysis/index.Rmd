@@ -1,6 +1,6 @@
 ---
 title: "Home"
-author: "Place Holder"
+author: "adamf6769"
 date: "`r Sys.Date()`"
 site: workflowr::wflow_site
 output:
@@ -17,12 +17,12 @@ Slim Shady.
 ## Zdjecie
 ```{r uczelnia-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
 
-knitr::include_graphics("assets/uczelnia.png")
+knitr::include_graphics("assets/droning.png")
 ```
 
 ## O stronie
 
-Ledwo dycha.
+Strona została zbudowana w RStudio, przy użyciu sprzętu z zainstalowanym system operacyjnym Windows.
 
 
 ## We have technology

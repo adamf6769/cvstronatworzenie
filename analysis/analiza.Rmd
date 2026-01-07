@@ -17,6 +17,14 @@ W tej analizie przyjrzymy się rynkowi kart graficznych (GPU) z trzech głównyc
 - NVIDIA GeForce RTX 40xx (2022-2023)
 - AMD Radeon RX 7xxx (2022-2023)
 
+
+```{r gpu-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
+
+knitr::include_graphics("assets/gpu.png")
+```
+
+
+
 ## Cel analizy
 
 Zbadamy zależności między:

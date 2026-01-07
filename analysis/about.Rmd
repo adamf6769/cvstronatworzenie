@@ -7,4 +7,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+Describe your project:
+
+Created in RStudio.
+
+```{r about-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
+
+knitr::include_graphics("assets/webdesign.png")
+```

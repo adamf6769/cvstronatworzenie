@@ -1,6 +1,6 @@
 ---
 title: "Curriculum Vitae"
-author: "Imie Nazwisko"
+author: "[REDACTED]"
 date: "`r Sys.Date()`"
 output: workflowr::wflow_html
 editor_options:
@@ -40,9 +40,9 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ---
 
-# Imie Nazwisko
+# {REDACTED]
 
-**Student kierunku Kierunek** | Rok rok studiów
+**adamf6769 IiID** | III rok
 
 
 ---
@@ -54,11 +54,11 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 <div class="cv-item">
 
 ### Nazwa Uczelni
-**Kierunek: Kierunek**  
+**Kierunek: IiID**  
 <span class="cv-date">Rok rozpoczęcia - obecnie (Rok rok)</span>
 
-- Specjalizacja: [Twoja specjalizacja jeśli dotyczy]
-- Średnia ocen: [Twoja średnia]
+- Specjalizacja: [Dane]
+- Średnia ocen: [2.3]
 - Wybrane przedmioty: Statystyka, Analiza Danych, Programowanie w R, Bazy Danych, Matematyka
 
 </div>
@@ -66,7 +66,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 <div class="cv-item">
 
 ### Szkoła Średnia
-**Liceum Ogólnokształcące im. [Nazwa]**  
+**Liceum Ogólnokształcące im. [REDACTED]**  
 <span class="cv-date">Rok - Rok</span>
 
 - Profil: [np. matematyczno-fizyczny]
@@ -99,20 +99,20 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 <div class="cv-item">
 
-### Projekt: [Nazwa innego projektu]
-**Rola: [np. Programista / Analityk]**  
+### Projekt: [REDACTED]
+**Rola: [Analityk]**  
 <span class="cv-date">Data - Data</span>
 
-- Opis projektu: [Krótki opis co robiłeś/aś w projekcie]
-- Wykorzystane technologie: [np. Python, SQL, JavaScript]
-- Efekty: [Co udało się osiągnąć]
+- Opis projektu: [Obserwowałem co ludzie robią do projektu]
+- Wykorzystane technologie: [Windows]
+- Efekty: [Wada wzroku]
 
 </div>
 
 <div class="cv-item">
 
 ### Wolontariat / Koło naukowe
-**[Nazwa organizacji/koła]**  
+**[Koło lokalnych analityków]**  
 <span class="cv-date">Data - Data</span>
 
 - Opis Twoich działań
