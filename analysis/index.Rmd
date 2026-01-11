@@ -10,10 +10,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-## O
+## O mnie
 
-Slim Shady.
+Nazywam się adamf6769. Studiuję w [REDACTED] na kierunku [REDACTED] na roku [REDACTED].
 
+<!--Zdjęcie uczelni (z dronem)-->
 ## Zdjecie
 ```{r uczelnia-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
 
@@ -23,20 +24,19 @@ knitr::include_graphics("assets/droning.png")
 ## O stronie
 
 Strona została zbudowana w RStudio, przy użyciu sprzętu z zainstalowanym system operacyjnym Windows.
+Wykorzystano także GitHub, do stworzenia repozytorium, w którym zawarte są pliki oraz Github Pages do stworzenia i hostowania strony URL.
 
+## Dodatkowe technologie/pakiety
 
-## We have technology
+W celu zbudowania strony wykorzystano także:
 
-Strona została wykonana przy użyciu następujących narzędzi i technologii:
-
-- **R** (wersja 4.x) - język programowania do analizy danych
-- **RStudio** - zintegrowane środowisko programistyczne
+- **R** - język programowania do analizy danych (używany przez R Studio)
 - **workflowr** - pakiet do zarządzania projektami analitycznymi
 - **R Markdown** - do tworzenia dynamicznych dokumentów
 - **Quarto** - do przygotowania prezentacji
 - **ggplot2** - biblioteka do zaawansowanej wizualizacji danych
 - **dplyr** - pakiet do efektywnego przetwarzania danych
-- **Git & GitHub** - kontrola wersji i hosting strony
+
 
 
 *Ostatnia aktualizacja: `r Sys.Date()`*

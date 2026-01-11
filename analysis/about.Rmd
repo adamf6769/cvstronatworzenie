@@ -7,9 +7,13 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project:
+<!--Krótki opis-->
+Strona została stworzona w ramach projektu. W niej można znaleźć podstawowe podstrony takie jak Home (index.Rmd), About (about.Rmd), License (license.Rmd) oraz załączone dodatkowe CV (cv.Rmd), Prezentacja (prezentacja.qmd) oraz Analiza Danych (analiza.Rmd).
 
-Created in RStudio.
+Wszelkie grafiki wykorzystane na stronie można znaleźć przez Google.
+
+
+<!--Zdjęcie sprawiające, że strona wygląda smart-->
 
 ```{r about-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
 

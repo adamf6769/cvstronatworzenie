@@ -10,6 +10,8 @@ editor_options:
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
 
+<!--CSS modyfikujący wygląd oraz rozłożenie (wbudowany w kod)-->
+
 <style>
 .cv-section {
   margin-top: 30px;
@@ -47,6 +49,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ---
 
+<!--Sekcje div, ułatwiające późniejsze modyfikowanie przez CSS-->
+
 <div class="cv-section">
 
 ## Wykształcenie
@@ -55,7 +59,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ### Nazwa Uczelni
 **Kierunek: IiID**  
-<span class="cv-date">Rok rozpoczęcia - obecnie (Rok rok)</span>
+<span class="cv-date">1900 - 2026</span>
 
 - Specjalizacja: [Dane]
 - Średnia ocen: [2.3]
@@ -67,7 +71,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ### Szkoła Średnia
 **Liceum Ogólnokształcące im. [REDACTED]**  
-<span class="cv-date">Rok - Rok</span>
+<span class="cv-date">1800 - 1898</span>
 
 - Profil: [np. matematyczno-fizyczny]
 - Matura: matematyka rozszerzona, informatyka rozszerzona
@@ -101,7 +105,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ### Projekt: [REDACTED]
 **Rola: [Analityk]**  
-<span class="cv-date">Data - Data</span>
+<span class="cv-date">1980 - 1999</span>
 
 - Opis projektu: [Obserwowałem co ludzie robią do projektu]
 - Wykorzystane technologie: [Windows]
@@ -109,17 +113,6 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 </div>
 
-<div class="cv-item">
-
-### Wolontariat / Koło naukowe
-**[Koło lokalnych analityków]**  
-<span class="cv-date">Data - Data</span>
-
-- Opis Twoich działań
-- Nabyte umiejętności
-- Zrealizowane projekty
-
-</div>
 
 </div>
 
@@ -156,8 +149,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 - **workflowr** - zarządzanie projektami
 - **Quarto / R Markdown** - dokumentacja
 - **MS Office** - pakiet biurowy
-- **Jupyter Notebook** - Python
-- **VS Code** - edytor kodu
+- **JetBrains Rider/PyCharm** - edytory kodów
 
 </div>
 
@@ -186,16 +178,6 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 - **Polski** - język ojczysty (C2)
 - **Angielski** - poziom B2/C1 (dokumentacja techniczna, komunikacja)
-- **[Inny język]** - [poziom]
-
-### Umiejętności miękkie
-
-- Praca w zespole
-- Komunikatywność
-- Rozwiązywanie problemów
-- Zarządzanie czasem
-- Myślenie analityczne
-- Szybkie uczenie się
 
 </div>
 
@@ -215,5 +197,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 </div>
 
 ---
+
+<!--r Sys.Date() aktualizuje dzień-->
 
 *Ostatnia aktualizacja: `r Sys.Date()`*

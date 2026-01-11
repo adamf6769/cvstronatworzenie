@@ -1,6 +1,6 @@
 ---
 title: "Analiza GPU"
-author: "Imie Nazwisko"
+author: "adamf6769"
 date: "`r Sys.Date()`"
 output: workflowr::wflow_html
 editor_options:
@@ -12,12 +12,14 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 
 # Wprowadzenie
 
+<!--30xx itp. zwraca uwagę na różne GENERACJE, nie konkretne karty [czyli 3060, 3070 i 3080 należą do tej samej generacji]-->
+
 W tej analizie przyjrzymy się rynkowi kart graficznych (GPU) z trzech głównych generacji:
 - NVIDIA GeForce RTX 30xx (2020-2021)
 - NVIDIA GeForce RTX 40xx (2022-2023)
 - AMD Radeon RX 7xxx (2022-2023)
 
-
+<!--Zdjęcie poglądowe jednego z badanych produktów-->
 ```{r gpu-zdjecie, echo=FALSE, out.width="80%", fig.align='center'}
 
 knitr::include_graphics("assets/gpu.png")
@@ -37,30 +39,27 @@ Zbadamy zależności między:
 
 # Wczytanie i przygotowanie danych
 
+
 ## Ładowanie bibliotek
 ```{r biblioteki}
-# Załadowanie wymaganych pakietów
-library(tidyverse)  # dplyr + ggplot2 + inne
-library(knitr)      # do ładnych tabel
+library(tidyverse) 
+library(knitr)      
 ```
 
+
+<!--Plik znajduje się w katalogu data-->
 ## Wczytanie danych
 ```{r wczytanie-danych}
-# Wczytanie danych o kartach graficznych
 gpu_data <- read.csv("data/gpu_dane.csv", 
                      fileEncoding = "UTF-8",
                      stringsAsFactors = FALSE)
 
-# Podgląd pierwszych wierszy
 head(gpu_data)
 ```
 
 ## Podstawowe statystyki
 ```{r statystyki-podstawowe}
-# Podsumowanie danych
 summary(gpu_data)
-
-# Struktura danych
 str(gpu_data)
 ```
 
@@ -75,12 +74,12 @@ str(gpu_data)
 
 ## 1. Filtrowanie danych - karty w przedziale cenowym
 ```{r filter-cena}
-# Karty w przedziale 2000-5000 PLN (segment średni/wysoki)
+#Karty w przedziale 2000-5000 PLN (segment średni/wysoki)
 gpu_mid_high <- gpu_data %>%
   filter(Cena_PLN >= 2000 & Cena_PLN <= 5000) %>%
   arrange(desc(Wydajnosc_FPS))
 
-# Wyświetlenie wyników
+#Wyświetlenie wyników
 kable(gpu_mid_high, 
       caption = "Karty graficzne w przedziale 2000-5000 PLN")
 ```
@@ -92,16 +91,16 @@ W tym przedziale cenowym mamy `r nrow(gpu_mid_high)` modeli. To najczęściej wy
 
 ## 2. Dodanie nowych zmiennych - mutate
 ```{r mutate-wskazniki}
-# Obliczenie wskaźników wydajności
+#Wskaźnik wydajności
 gpu_data <- gpu_data %>%
   mutate(
-    # Wydajność na złotówkę (FPS/PLN)
+    #Wydajność na złotówkę (FPS/PLN)
     Wydajnosc_na_zlotowke = round(Wydajnosc_FPS / Cena_PLN, 4),
     
-    # Wydajność na Wat (FPS/W)
+    #Wydajność na Wat (FPS/W)
     Wydajnosc_na_Wat = round(Wydajnosc_FPS / TDP_W, 2),
     
-    # Kategoria cenowa
+    #Kategoria cenowa
     Kategoria_cenowa = case_when(
       Cena_PLN < 2000 ~ "Budget",
       Cena_PLN >= 2000 & Cena_PLN < 4000 ~ "Mid-range",
@@ -113,7 +112,7 @@ gpu_data <- gpu_data %>%
     Cena_za_GB_VRAM = round(Cena_PLN / VRAM_GB, 0)
   )
 
-# Najlepsze karty pod względem wydajności na złotówkę
+#Najlepsze karty pod względem wydajności na złotówkę
 gpu_data %>%
   select(Model, Producent, Cena_PLN, Wydajnosc_FPS, Wydajnosc_na_zlotowke) %>%
   arrange(desc(Wydajnosc_na_zlotowke)) %>%
@@ -128,7 +127,7 @@ Model **`r gpu_data %>% arrange(desc(Wydajnosc_na_zlotowke)) %>% slice(1) %>% pu
 
 ## 3. Grupowanie i agregacja - group_by + summarise
 ```{r groupby-producent}
-# Porównanie producentów
+#Porównanie producentów
 porownanie_producentow <- gpu_data %>%
   group_by(Producent) %>%
   summarise(
@@ -150,7 +149,7 @@ kable(porownanie_producentow,
 - **NVIDIA** ma średnio wyższą wydajność (`r porownanie_producentow %>% filter(Producent == "NVIDIA") %>% pull(Srednia_wydajnosc)` FPS)
 - **AMD** oferuje niższą średnią cenę (`r porownanie_producentow %>% filter(Producent == "AMD") %>% pull(Srednia_cena)` PLN)
 ```{r groupby-generacja}
-# Analiza według generacji
+#Analiza pod kątem generacji
 analiza_generacji <- gpu_data %>%
   group_by(Generacja, Producent) %>%
   summarise(
@@ -162,7 +161,7 @@ analiza_generacji <- gpu_data %>%
   arrange(Generacja, Producent)
 
 kable(analiza_generacji,
-      caption = "Analiza według generacji i producenta")
+      caption = "Analiza pod kątem generacji i producenta")
 ```
 
 ---
@@ -172,19 +171,19 @@ kable(analiza_generacji,
 ## Wykres 1: Zależność ceny od wydajności
 ```{r wykres-cena-wydajnosc, fig.width=10, fig.height=6}
 ggplot(gpu_data, aes(x = Cena_PLN, y = Wydajnosc_FPS)) +
-  # Punkty z podziałem na producentów
+  #Podział na producentów
   geom_point(aes(color = Producent, size = VRAM_GB), alpha = 0.7) +
   
-  # Linia trendu
+  #Linia trendu
   geom_smooth(method = "lm", se = TRUE, color = "black", linetype = "dashed") +
   
-  # Etykiety dla wybranych modeli
+  #Etykiety dla wybranych modeli
 geom_text(data = gpu_data %>% 
             filter(Model == "RTX 4090"),
           aes(label = Model), 
           vjust = -1, size = 3) +
   
-  # Tytuły i opisy
+  #Tytuły i opisy
   labs(
     title = "Zależność wydajności od ceny",
     subtitle = "Porównanie modeli NVIDIA i AMD",
@@ -195,7 +194,7 @@ geom_text(data = gpu_data %>%
     caption = "Źródło: Dane rynkowe z 2024 roku"
   ) +
   
-  # Motyw
+  #Motyw
   theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(face = "bold", size = 16),
@@ -203,7 +202,7 @@ geom_text(data = gpu_data %>%
     legend.position = "right"
   ) +
   
-  # Kolory dla producentów
+  #Kolory dla producentów
   scale_color_manual(values = c("NVIDIA" = "#76B900", "AMD" = "#ED1C24"))
 ```
 
@@ -218,21 +217,18 @@ geom_text(data = gpu_data %>%
 
 ## Wykres 2: Porównanie wydajności według kategorii cenowej
 ```{r wykres-kategorie, fig.width=10, fig.height=6}
-# Uporządkowanie kategorii
+#Uporządkowanie kategorii
 gpu_data$Kategoria_cenowa <- factor(gpu_data$Kategoria_cenowa,
                                      levels = c("Budget", "Mid-range", 
                                                "High-end", "Enthusiast"))
 
 ggplot(gpu_data, aes(x = Kategoria_cenowa, y = Wydajnosc_FPS, fill = Producent)) +
-  # Słupki grupowane
   geom_col(position = position_dodge(width = 0.8), alpha = 0.8) +
   
-  # Wartości na słupkach
   geom_text(aes(label = round(Wydajnosc_FPS, 0)), 
             position = position_dodge(width = 0.8),
             vjust = -0.5, size = 3.5) +
   
-  # Tytuły i opisy
   labs(
     title = "Średnia wydajność GPU",
     subtitle = "Porównanie NVIDIA vs AMD",
@@ -242,7 +238,6 @@ ggplot(gpu_data, aes(x = Kategoria_cenowa, y = Wydajnosc_FPS, fill = Producent))
     caption = "Budget: <2000 PLN | Mid-range: 2000-4000 PLN | High-end: 4000-7000 PLN | Enthusiast: >7000 PLN"
   ) +
   
-  # Motyw
   theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(face = "bold", size = 16),
@@ -251,10 +246,8 @@ ggplot(gpu_data, aes(x = Kategoria_cenowa, y = Wydajnosc_FPS, fill = Producent))
     axis.text.x = element_text(angle = 0, hjust = 0.5)
   ) +
   
-  # Kolory
   scale_fill_manual(values = c("NVIDIA" = "#76B900", "AMD" = "#ED1C24")) +
   
-  # Skala Y
   scale_y_continuous(breaks = seq(0, 180, 20), limits = c(0, 180))
 ```
 
@@ -296,7 +289,6 @@ ggplot(gpu_data, aes(x = TDP_W, y = Wydajnosc_FPS)) +
     caption = "Linie przerywane = średnie wartości"
   ) +
   
-  # Motyw
   theme_minimal(base_size = 12) +
   theme(
     plot.title = element_text(face = "bold", size = 16),
@@ -304,7 +296,7 @@ ggplot(gpu_data, aes(x = TDP_W, y = Wydajnosc_FPS)) +
     legend.position = "right"
   ) +
   
-  # Kolory dla generacji
+  #Kolory dla różnych generacji
   scale_color_brewer(palette = "Set2")
 ```
 
@@ -360,20 +352,11 @@ best_midrange <- gpu_data %>%
 
 ### Ogólne wnioski
 
-- **NVIDIA** oferuje wyższą wydajność, ale za wyższą cenę
-- **AMD** to lepsza opcja dla użytkowników z ograniczonym budżetem
+- **NVIDIA** może zaoferować wyższą wydajność, ale kosztem wyższej ceny
+- **AMD** to lepsza opcja dla użytkowników z bardziej ograniczonym budżetem
 - Nowsze generacje (40xx, 7xxx) są znacznie bardziej efektywne energetycznie
 - W segmencie **Mid-range** różnice między producentami są minimalne
 - Pamięć VRAM rośnie wraz z ceną, ale nie zawsze proporcjonalnie
-
-### Dla kogo który model?
-
-| Profil użytkownika | Rekomendacja |
-|-------------------|--------------|
-| Gracz budżetowy | RX 7600 / RTX 3060 |
-| Gracz casualowy (1440p) | RTX 4070 / RX 7800 XT |
-| Entuzjasta (4K gaming) | RTX 4080 / RX 7900 XTX |
-| Bez kompromisów | RTX 4090 |
 
 ---
 
@@ -403,4 +386,4 @@ W tej analizie wykorzystano:
 ---
 
 *Analiza została wykonana: `r Sys.Date()`*  
-*Autor: Imie Nazwisko*
+*Autor: adamf6769*

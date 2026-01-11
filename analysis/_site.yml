@@ -1,7 +1,7 @@
 name: "cvstronatworzenie"
 output_dir: ../docs
 navbar:
-  title: "Workflowr Site"
+  title: "Strona oparta o Workflowr"
   left:
   - text: Home
     href: index.html
