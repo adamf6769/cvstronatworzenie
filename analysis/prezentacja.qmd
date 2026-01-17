@@ -245,9 +245,9 @@ ggplot(zastosowania_long, aes(x = Zadanie, y = Wydajnosc, fill = Typ)) +
 ### Dlaczego komputery to najlepsze hobby?
 
 ::: {.incremental}
-- *Praktyczne zastosowanie** - umiejętności przydatne zawodowo  
-- *Kreatywność** - nieskończone możliwości customizacji
-- *Przyszłościowość** - technologia tylko się rozwija
+- **Praktyczne zastosowanie** - umiejętności przydatne zawodowo  
+- **Kreatywność** - nieskończone możliwości customizacji
+- **Przyszłościowość** - technologia tylko się rozwija
 :::
 
 ---
