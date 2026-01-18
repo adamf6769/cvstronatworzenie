@@ -46,6 +46,10 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 **adamf6769 IiID** | III rok
 
+```{r cv-zdjecie-me, echo=FALSE, out.width="40%", fig.align='left'}
+
+knitr::include_graphics("assets/ratatle.png")
+```
 
 ---
 
