@@ -96,35 +96,29 @@ komponenty <- data.frame(
   )
 )
 
-ggplot(komponenty, aes(x = Komponent, y = Wydajnosc, fill = Typ)) +
+komponenty_summary <- komponenty %>%
+  group_by(Typ, Komponent) %>%
+  summarise(Srednia_wydajnosc = mean(Wydajnosc), .groups = "drop")
+
+ggplot(komponenty_summary, aes(x = Typ, y = Srednia_wydajnosc, fill = Komponent)) +
   geom_col(position = "dodge", width = 0.7) +
   labs(
-    title = "Porównanie wydajności według budżetu",
-    subtitle = "Względna wydajność komponentów (% max)",
-    x = "",
-    y = "Wydajność względna (%)",
-    fill = "Typ PC"
+    title = "Porównanie wydajności komponentów według budżetu",
+    subtitle = "Który typ PC ma zbilansowane komponenty?",
+    x = "Typ PC",
+    y = "Wydajność względna (% max)",
+    fill = "Komponent"
   ) +
-  theme_minimal(base_size = 16) +
-  theme(
-    plot.background = element_rect(fill = "#1a1a1a", color = NA),
-    panel.background = element_rect(fill = "#1a1a1a"),
-    text = element_text(color = "white"),
-    axis.text = element_text(color = "white"),
-    panel.grid = element_line(color = "#404040"),
-    legend.background = element_rect(fill = "#1a1a1a"),
-    legend.text = element_text(color = "white"),
-    legend.position = "top"
-  ) +
-  scale_fill_manual(values = c("Budget PC" = "#4A90E2", "Mid-range PC" = "#F5A623", "High-end PC" = "#7ED321")) +
-  scale_y_continuous(breaks = seq(0, 100, 20), limits = c(0, 110))
+  theme_minimal(base_size = 12) +
+  scale_fill_brewer(palette = "Set2") +  # Ładniejsze kolory
+  coord_flip()  # Odwrócone osie = łatwiej porównać
 ```
 
 ## Benchmarking - testy wydajności {background-color="#2a2a2a"}
 ```{r}
 #| echo: false
 #| fig-width: 10
-#| fig-height: 6
+#| fig-height: 5
 
 #Dane benchmarkowe
 benchmark_data <- data.frame(
@@ -164,6 +158,7 @@ ggplot(benchmark_long, aes(x = Test, y = Score, fill = Rok)) +
   scale_fill_manual(values = c("2020" = "#E74C3C", "2024" = "#2ECC71")) +
   scale_y_continuous(breaks = seq(0, 16000, 2000))
 ```
+
 
 ## Gaming vs Workstation {background-color="#1a1a1a"}
 

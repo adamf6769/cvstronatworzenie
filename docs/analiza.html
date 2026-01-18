@@ -11,7 +11,7 @@
 
 <meta name="author" content="adamf6769" />
 
-<meta name="date" content="2026-01-11" />
+<meta name="date" content="2026-01-18" />
 
 <title>Analiza GPU</title>
 
@@ -370,7 +370,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Analiza GPU</h1>
 <h4 class="author">adamf6769</h4>
-<h4 class="date">2026-01-11</h4>
+<h4 class="date">2026-01-18</h4>
 
 </div>
 
@@ -399,7 +399,7 @@ aria-hidden="true"></span> </a>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2026-01-11
+<strong>Last updated:</strong> 2026-01-18
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -533,15 +533,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietree46b8c5f7e03233451876aa5a80d06ddb97d06433targetblank46b8c5fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietree634e75f55553e009fff258719a3bf28a32fec472targetblank634e75fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/adamf6769/cvstronatworzenie/tree/46b8c5f7e03233451876aa5a80d06ddb97d06433" target="_blank">46b8c5f</a>
+<a href="https://github.com/adamf6769/cvstronatworzenie/tree/634e75f55553e009fff258719a3bf28a32fec472" target="_blank">634e75f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietree46b8c5f7e03233451876aa5a80d06ddb97d06433targetblank46b8c5fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomadamf6769cvstronatworzenietree634e75f55553e009fff258719a3bf28a32fec472targetblank634e75fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -551,7 +551,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/adamf6769/cvstronatworzenie/tree/46b8c5f7e03233451876aa5a80d06ddb97d06433" target="_blank">46b8c5f</a>.
+<a href="https://github.com/adamf6769/cvstronatworzenie/tree/634e75f55553e009fff258719a3bf28a32fec472" target="_blank">634e75f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -574,12 +574,8 @@ Untracked files:
     Untracked:  skrypt.R
 
 Unstaged changes:
-    Modified:   analysis/_site.yml
-    Modified:   analysis/about.Rmd
     Modified:   analysis/analiza.Rmd
-    Modified:   analysis/cv.Rmd
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/license.Rmd
+    Modified:   analysis/prezentacja.qmd
 
 </code></pre>
 <p>
@@ -624,6 +620,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/adamf6769/cvstronatworzenie/blob/680eba283d5c75f7328ad6fdae9bdaa1ca4b23e1/analysis/analiza.Rmd" target="_blank">680eba2</a>
+</td>
+<td>
+adamf6769
+</td>
+<td>
+2026-01-11
+</td>
+<td>
+Made changes
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/adamf6769/cvstronatworzenie/680eba283d5c75f7328ad6fdae9bdaa1ca4b23e1/docs/analiza.html" target="_blank">680eba2</a>
+</td>
+<td>
+adamf6769
+</td>
+<td>
+2026-01-11
+</td>
+<td>
+Made changes
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1280,38 +1310,43 @@ rozdzielczościach)</li>
 <div id="wykres-2-porównanie-wydajności-według-kategorii-cenowej"
 class="section level2">
 <h2>Wykres 2: Porównanie wydajności według kategorii cenowej</h2>
-<pre class="r"><code>#Uporządkowanie kategorii
-gpu_data$Kategoria_cenowa &lt;- factor(gpu_data$Kategoria_cenowa,
-                                     levels = c(&quot;Budget&quot;, &quot;Mid-range&quot;, 
-                                               &quot;High-end&quot;, &quot;Enthusiast&quot;))
+<pre class="r"><code>gpu_by_category &lt;- gpu_data %&gt;%
+  group_by(Kategoria_cenowa, Producent) %&gt;%
+  summarise(
+    Srednia_wydajnosc = mean(Wydajnosc_FPS),
+    .groups = &quot;drop&quot;
+  )
 
-ggplot(gpu_data, aes(x = Kategoria_cenowa, y = Wydajnosc_FPS, fill = Producent)) +
-  geom_col(position = position_dodge(width = 0.8), alpha = 0.8) +
-  
-  geom_text(aes(label = round(Wydajnosc_FPS, 0)), 
-            position = position_dodge(width = 0.8),
-            vjust = -0.5, size = 3.5) +
-  
+
+print(gpu_by_category)</code></pre>
+<pre><code># A tibble: 7 × 3
+  Kategoria_cenowa Producent Srednia_wydajnosc
+  &lt;chr&gt;            &lt;chr&gt;                 &lt;dbl&gt;
+1 Budget           AMD                     88 
+2 Budget           NVIDIA                  85 
+3 Enthusiast       NVIDIA                 154.
+4 High-end         AMD                    145 
+5 High-end         NVIDIA                 134 
+6 Mid-range        AMD                    112.
+7 Mid-range        NVIDIA                 102.</code></pre>
+<pre class="r"><code>ggplot(gpu_by_category, aes(x = Kategoria_cenowa, 
+                             y = Srednia_wydajnosc, 
+                             fill = Producent)) +
+  geom_col(position = &quot;dodge&quot;, width = 0.7) +
+  geom_text(aes(label = round(Srednia_wydajnosc, 0)),
+            position = position_dodge(width = 0.7),
+            vjust = -0.5,
+            size = 4) +
   labs(
-    title = &quot;Średnia wydajność GPU&quot;,
+    title = &quot;Średnia wydajność GPU według kategorii cenowej&quot;,
     subtitle = &quot;Porównanie NVIDIA vs AMD&quot;,
     x = &quot;Kategoria cenowa&quot;,
-    y = &quot;Średnia wydajność (FPS)&quot;,
-    fill = &quot;Producent&quot;,
-    caption = &quot;Budget: &lt;2000 PLN | Mid-range: 2000-4000 PLN | High-end: 4000-7000 PLN | Enthusiast: &gt;7000 PLN&quot;
+    y = &quot;Średnia wydajność (FPS w 1440p)&quot;,
+    fill = &quot;Producent&quot;
   ) +
-  
   theme_minimal(base_size = 12) +
-  theme(
-    plot.title = element_text(face = &quot;bold&quot;, size = 16),
-    plot.subtitle = element_text(size = 12, color = &quot;gray40&quot;),
-    legend.position = &quot;top&quot;,
-    axis.text.x = element_text(angle = 0, hjust = 0.5)
-  ) +
-  
   scale_fill_manual(values = c(&quot;NVIDIA&quot; = &quot;#76B900&quot;, &quot;AMD&quot; = &quot;#ED1C24&quot;)) +
-  
-  scale_y_continuous(breaks = seq(0, 180, 20), limits = c(0, 180))</code></pre>
+  scale_x_discrete(limits = c(&quot;Budget&quot;, &quot;Mid-range&quot;, &quot;High-end&quot;, &quot;Enthusiast&quot;))</code></pre>
 <p><img src="figure/analiza.Rmd/wykres-kategorie-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-wykres-kategorie-1">
@@ -1550,7 +1585,7 @@ generacji</li>
 <li>R Markdown - dynamiczne generowanie raportów</li>
 </ul>
 <hr />
-<p><em>Analiza została wykonana: 2026-01-11</em><br />
+<p><em>Analiza została wykonana: 2026-01-18</em><br />
 <em>Autor: adamf6769</em></p>
 <br>
 <p>
@@ -1582,23 +1617,23 @@ attached base packages:
 other attached packages:
  [1] knitr_1.50      lubridate_1.9.4 forcats_1.0.1   stringr_1.5.2  
  [5] dplyr_1.1.4     purrr_1.1.0     readr_2.1.6     tidyr_1.3.1    
- [9] tibble_3.3.0    ggplot2_4.0.0   tidyverse_2.0.0 workflowr_1.7.2
+ [9] tibble_3.3.0    ggplot2_4.0.0   tidyverse_2.0.0
 
 loaded via a namespace (and not attached):
- [1] sass_0.4.10        generics_0.1.4     lattice_0.22-7     stringi_1.8.7     
- [5] hms_1.1.4          digest_0.6.37      magrittr_2.0.4     timechange_0.3.0  
- [9] evaluate_1.0.5     grid_4.5.1         RColorBrewer_1.1-3 fastmap_1.2.0     
-[13] Matrix_1.7-3       rprojroot_2.1.1    jsonlite_2.0.0     processx_3.8.6    
-[17] whisker_0.4.1      ps_1.9.1           promises_1.3.3     mgcv_1.9-3        
-[21] httr_1.4.7         scales_1.4.0       jquerylib_0.1.4    cli_3.6.5         
-[25] rlang_1.1.6        splines_4.5.1      withr_3.0.2        cachem_1.1.0      
-[29] yaml_2.3.10        tools_4.5.1        tzdb_0.5.0         httpuv_1.6.16     
-[33] vctrs_0.6.5        R6_2.6.1           lifecycle_1.0.4    git2r_0.36.2      
-[37] fs_1.6.6           pkgconfig_2.0.3    callr_3.7.6        pillar_1.11.1     
-[41] bslib_0.9.0        later_1.4.4        gtable_0.3.6       glue_1.8.0        
-[45] Rcpp_1.1.0         xfun_0.53          tidyselect_1.2.1   rstudioapi_0.17.1 
-[49] farver_2.1.2       nlme_3.1-168       htmltools_0.5.8.1  labeling_0.4.3    
-[53] rmarkdown_2.30     compiler_4.5.1     getPass_0.2-4      S7_0.2.0          </code></pre>
+ [1] utf8_1.2.6         sass_0.4.10        generics_0.1.4     lattice_0.22-7    
+ [5] stringi_1.8.7      hms_1.1.4          digest_0.6.37      magrittr_2.0.4    
+ [9] evaluate_1.0.5     grid_4.5.1         timechange_0.3.0   RColorBrewer_1.1-3
+[13] fastmap_1.2.0      Matrix_1.7-3       rprojroot_2.1.1    workflowr_1.7.2   
+[17] jsonlite_2.0.0     whisker_0.4.1      promises_1.3.3     mgcv_1.9-3        
+[21] scales_1.4.0       jquerylib_0.1.4    cli_3.6.5          rlang_1.1.6       
+[25] splines_4.5.1      withr_3.0.2        cachem_1.1.0       yaml_2.3.10       
+[29] tools_4.5.1        tzdb_0.5.0         httpuv_1.6.16      vctrs_0.6.5       
+[33] R6_2.6.1           lifecycle_1.0.4    git2r_0.36.2       fs_1.6.6          
+[37] pkgconfig_2.0.3    pillar_1.11.1      bslib_0.9.0        later_1.4.4       
+[41] gtable_0.3.6       glue_1.8.0         Rcpp_1.1.0         xfun_0.53         
+[45] tidyselect_1.2.1   rstudioapi_0.17.1  farver_2.1.2       nlme_3.1-168      
+[49] htmltools_0.5.8.1  labeling_0.4.3     rmarkdown_2.30     compiler_4.5.1    
+[53] S7_0.2.0          </code></pre>
 </div>
 </div>
 </div>
